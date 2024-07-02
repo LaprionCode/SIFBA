@@ -19,7 +19,7 @@
                 </div>
                 <div class="row">
                     <div class="col col-md-12 form-group">
-                        <label>Nomor Induk Kewarganegaraan</label>
+                        <label>Nomor Induk Pendudukan</label>
                         <input type="text" class="form-control" id="nik" 
                         name="nik" placeholder="Masukkan NIK" required>
                     </div> 
@@ -41,7 +41,7 @@
 
                 <div class="row">
                 <div class="col col-md-12 form-group">
-            <label class="my-1 mr-2" for="kelamin">Kelamin</label>
+            <label class="my-1 mr-2" for="kelamin">Jenis Kelamin</label>
             <select class="custom-select my-1 mr-sm-2" id="kelamin" name="kelamin" >
              <option value="Laki-Laki">Laki-Laki</option>
              <option value="Perempuan">Perempuan</option>
@@ -140,37 +140,114 @@
             <label for="kasus">Permasalahan / Gambaran Kasus</label>
             <textarea class="form-control" id="kasus" name="kasus" rows="3"></textarea>
         </div>
-        <label>Kebutuhan / Komponen Layanan Yang DiButuhkan</label> <br>
         <div id="dynamicFields">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="hidup_layak" name="kebutuhan[]" value="Hidup Layak">
-                        <label class="form-check-label" for="hidup_layak">1. Pemenuhan Hidup Layak</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="Perawatan" name="kebutuhan[]" value="Perawatan">
-                        <label class="form-check-label" for="Perawatan">2. Perawatan</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="dukungan_keluarga" name="kebutuhan[]" value="Dukungan Keluarga">
-                        <label class="form-check-label" for="dukungan_keluarga">3. Dukungan Keluarga</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="Terapi" name="kebutuhan[]" value="Terapi">
-                        <label class="form-check-label" for="Terapi">4. Terapi</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="Pelatihan" name="kebutuhan[]" value="Pelatihan Vokasional">
-                        <label class="form-check-label" for="Pelatihan">5. Pelatihan Vokasional</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="Kewirausahaan" name="kebutuhan[]" value="Kewirausahaan">
-                        <label class="form-check-label" for="Kewirausahaan">6. Kewirausahaan</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="aksesibilitas" name="kebutuhan[]" value="Aksesibilitas">
-                        <label class="form-check-label" for="aksesibilitas">7. Dukungan Aksebilitas</label>
-                    </div>
-                </div>
+                <div class="row">
+        <div class="col-md-12">
+            <label>Kebutuhan / Komponen Layanan Yang DiButuhkan</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Pemenuhan Hidup Layak" id="hidupLayakCheckbox" name="kebutuhan[]" onchange="toggleInputs('hidupLayak')">
+                <label class="form-check-label" for="hidupLayakCheckbox">1. Pemenuhan Hidup Layak</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Perawatan" id="perawatanCheckbox" name="kebutuhan[]" onchange="toggleInputs('perawatan')">
+                <label class="form-check-label" for="perawatanCheckbox">2. Perawatan</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Dukungan Keluarga" id="dukunganCheckbox" name="kebutuhan[]" onchange="toggleInputs('dukungan')">
+                <label class="form-check-label" for="dukunganCheckbox">3. Dukungan Keluarga</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Terapi" id="terapiCheckbox" name="kebutuhan[]" onchange="toggleInputs('terapi')">
+                <label class="form-check-label" for="terapiCheckbox">4. Terapi</label>
+            </div>
+            <!-- Repeat for other checkboxes -->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Pelatihan Vokasional" id="pelatihanCheckbox" name="kebutuhan[]" onchange="toggleInputs('pelatihan')">
+                <label class="form-check-label" for="pelatihanCheckbox">5. Pelatihan Vokasional</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Kewirausahaan" id="kewirausahaanCheckbox" name="kebutuhan[]" onchange="toggleInputs('kewirausahaan')">
+                <label class="form-check-label" for="kewirausahaanCheckbox">6. Kewirausahaan</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Dukungan Aksesibilitas" id="aksesibilitasCheckbox" name="kebutuhan[]" onchange="toggleInputs('aksesibilitas')">
+                <label class="form-check-label" for="aksesibilitasCheckbox">6. Dukungan Aksesibilitas</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3" id="hidupLayakInputs" style="display: none;">
+        <div class="col col-md-6 form-group">
+            <label>Pemenuhan Hidup Layak - Uraian</label>
+            <input type="text" class="form-control" name="hidup_layak_uraian" placeholder="Masukkan Uraian">
+        </div>
+        <div class="col col-md-6 form-group">
+            <label>Pemenuhan Hidup Layak - Nominal</label>
+            <input type="number" class="form-control" name="hidup_layak_nominal" placeholder="Masukkan Nominal">
+        </div>
+    </div>
+    <div class="row mt-3" id="perawatanInputs" style="display: none;">
+        <div class="col col-md-6 form-group">
+            <label>Perawatan - Uraian</label>
+            <input type="text" class="form-control" name="perawatan_uraian" placeholder="Masukkan Uraian">
+        </div>
+        <div class="col col-md-6 form-group">
+            <label>Perawatan - Nominal</label>
+            <input type="number" class="form-control" name="perawatan_nominal" placeholder="Masukkan Nominal">
+        </div>
+    </div>
+    <div class="row mt-3" id="dukunganInputs" style="display: none;">
+        <div class="col col-md-6 form-group">
+            <label>Dukungan Keluarga - Uraian</label>
+            <input type="text" class="form-control" name="dukungan_uraian" placeholder="Masukkan Uraian">
+        </div>
+        <div class="col col-md-6 form-group">
+            <label>Dukungan Keluarga - Nominal</label>
+            <input type="number" class="form-control" name="dukungan_nominal" placeholder="Masukkan Nominal">
+        </div>
+    </div>
+    <div class="row mt-3" id="terapiInputs" style="display: none;">
+        <div class="col col-md-6 form-group">
+            <label>Terapi - Uraian</label>
+            <input type="text" class="form-control" name="terapi_uraian" placeholder="Masukkan Uraian">
+        </div>
+        <div class="col col-md-6 form-group">
+            <label>Terapi - Nominal</label>
+            <input type="number" class="form-control" name="terapi_nominal" placeholder="Masukkan Nominal">
+        </div>
+    </div>
+    <!-- Repeat similar blocks for other categories -->
+    <div class="row mt-3" id="pelatihanInputs" style="display: none;">
+        <div class="col col-md-6 form-group">
+            <label>Pelatihan Vokasional - Uraian</label>
+            <input type="text" class="form-control" name="pelatihan_uraian" placeholder="Masukkan Uraian">
+        </div>
+        <div class="col col-md-6 form-group">
+            <label>Pelatihan Vokasional - Nominal</label>
+            <input type="number" class="form-control" name="pelatihan_nominal" placeholder="Masukkan Nominal">
+        </div>
+    </div>
+    <div class="row mt-3" id="kewirausahaanInputs" style="display: none;">
+        <div class="col col-md-6 form-group">
+            <label>Kewirausahaan - Uraian</label>
+            <input type="text" class="form-control" name="kewirausahaan_uraian" placeholder="Masukkan Uraian">
+        </div>
+        <div class="col col-md-6 form-group">
+            <label>Kewirausahaan - Nominal</label>
+            <input type="number" class="form-control" name="kewirausahaan_nominal" placeholder="Masukkan Nominal">
+        </div>
+    </div>
+    <div class="row mt-3" id="aksesibilitasInputs" style="display: none;">
+        <div class="col col-md-6 form-group">
+            <label>Dukungan Aksesibilitas - Uraian</label>
+            <input type="text" class="form-control" name="aksesibilitas_uraian" placeholder="Masukkan Uraian">
+        </div>
+        <div class="col col-md-6 form-group">
+            <label>Dukungan Aksesibilitas - Nominal</label>
+            <input type="number" class="form-control" name="aksesibilitas_nominal" placeholder="Masukkan Nominal">
+        </div>
+    </div>
+
 </div></div>
 
 <div class="col">
@@ -220,37 +297,12 @@
     })
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    // Function to handle checkbox click
-    $('.form-check-input').change(function() {
-        var checkboxValue = $(this).val(); // Get the value of the clicked checkbox
-        var checkboxLabel = $(this).siblings('label').text(); // Get the label text associated with the clicked checkbox
-
-        if ($(this).is(':checked')) {
-            // If checkbox is checked, dynamically add fields
-            var dynamicField = '<div class="dynamic-field" data-checkbox-value="' + checkboxValue + '">' +
-                                   '<label>' + checkboxLabel + '</label>' +
-                                   '<div class="form-row">' +
-                                       '<div class="form-group col-md-6">' +
-                                           '<label for="uraian_bantuan[' + checkboxValue + ']">Uraian Bantuan</label>' +
-                                           '<input type="text" class="form-control" name="uraian_bantuan[' + checkboxValue + ']" placeholder="Uraian Bantuan">' +
-                                       '</div>' +
-                                       '<div class="form-group col-md-6">' +
-                                           '<label for="nominal_bantuan[' + checkboxValue + ']">Nominal Bantuan</label>' +
-                                           '<input type="text" class="form-control" name="nominal_bantuan[' + checkboxValue + ']" placeholder="Nominal Bantuan">' +
-                                       '</div>' +
-                                   '</div>' +
-                               '</div>';
-            // Append the dynamically created fields to the appropriate container
-            $('#dynamicFields').append(dynamicField);
-        } else {
-            // If checkbox is unchecked, remove only the dynamically added fields associated with it
-            $('#dynamicFields').find('.dynamic-field[data-checkbox-value="' + checkboxValue + '"]').remove();
-        }
-    });
-});
-</script>
+<script>     function toggleInputs(category) {
+        const checkbox = document.getElementById(category + 'Checkbox');
+        const inputs = document.getElementById(category + 'Inputs');
+        inputs.style.display = checkbox.checked ? 'block' : 'none';
+    }
+    </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

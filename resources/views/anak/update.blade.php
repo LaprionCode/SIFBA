@@ -151,52 +151,105 @@
         </div>
         <label>Kebutuhan / Komponen Layanan Yang DiButuhkan</label> <br>
         <div id="dynamicFields">
-        @php
+                @php
+                    $kebutuhan = json_decode($anak->kebutuhan, true);
+                @endphp
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="hidup_layak" name="kebutuhan[]" value="Hidup Layak" {{ in_array('Hidup Layak', $kebutuhan) ? 'checked' : '' }} onchange="toggleInputs('hidup_layak')">
+                    <label class="form-check-label" for="hidup_layak">1. Pemenuhan Hidup Layak</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="perawatan" name="kebutuhan[]" value="Perawatan" {{ in_array('Perawatan', $kebutuhan) ? 'checked' : '' }} onchange="toggleInputs('perawatan')">
+                    <label class="form-check-label" for="perawatan">2. Perawatan</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="dukungan_keluarga" name="kebutuhan[]" value="Dukungan Keluarga" {{ in_array('Dukungan Keluarga', $kebutuhan) ? 'checked' : '' }} onchange="toggleInputs('dukungan_keluarga')">
+                    <label class="form-check-label" for="dukungan_keluarga">3. Dukungan Keluarga</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="terapi" name="kebutuhan[]" value="Terapi" {{ in_array('Terapi', $kebutuhan) ? 'checked' : '' }} onchange="toggleInputs('terapi')">
+                    <label class="form-check-label" for="terapi">4. Terapi</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="pelatihan" name="kebutuhan[]" value="Pelatihan Vokasional" {{ in_array('Pelatihan Vokasional', $kebutuhan) ? 'checked' : '' }} onchange="toggleInputs('pelatihan')">
+                    <label class="form-check-label" for="pelatihan">5. Pelatihan Vokasional</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="kewirausahaan" name="kebutuhan[]" value="Kewirausahaan" {{ in_array('Kewirausahaan', $kebutuhan) ? 'checked' : '' }} onchange="toggleInputs('kewirausahaan')">
+                    <label class="form-check-label" for="kewirausahaan">6. Kewirausahaan</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="aksesibilitas" name="kebutuhan[]" value="Aksesibilitas" {{ in_array('Aksesibilitas', $kebutuhan) ? 'checked' : '' }} onchange="toggleInputs('aksesibilitas')">
+                    <label class="form-check-label" for="aksesibilitas">7. Dukungan Aksebilitas</label>
+                </div>
+
+                @php
                 $kebutuhan = json_decode($anak->kebutuhan, true);
-            @endphp
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="hidup_layak" name="kebutuhan[]" value="Hidup Layak" {{ in_array('Hidup Layak', $kebutuhan) ? 'checked' : '' }}>
-                <label class="form-check-label" for="hidup_layak">1. Pemenuhan Hidup Layak</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="Perawatan" name="kebutuhan[]" value="Perawatan" {{ in_array('Perawatan', $kebutuhan) ? 'checked' : '' }}>
-                <label class="form-check-label" for="Perawatan">2. Perawatan</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="dukungan_keluarga" name="kebutuhan[]" value="Dukungan Keluarga" {{ in_array('Dukungan Keluarga', $kebutuhan) ? 'checked' : '' }}>
-                <label class="form-check-label" for="dukungan_keluarga">3. Dukungan Keluarga</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="Terapi" name="kebutuhan[]" value="Terapi" {{ in_array('Terapi', $kebutuhan) ? 'checked' : '' }}>
-                <label class="form-check-label" for="Terapi">4. Terapi</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="Pelatihan" name="kebutuhan[]" value="Pelatihan Vokasional" {{ in_array('Pelatihan Vokasional', $kebutuhan) ? 'checked' : '' }}>
-                <label class="form-check-label" for="Pelatihan">5. Pelatihan Vokasional</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="Kewirausahaan" name="kebutuhan[]" value="Kewirausahaan" {{ in_array('Kewirausahaan', $kebutuhan) ? 'checked' : '' }}>
-                <label class="form-check-label" for="Kewirausahaan">6. Kewirausahaan</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="aksesibilitas" name="kebutuhan[]" value="Aksesibilitas" {{ in_array('Aksesibilitas', $kebutuhan) ? 'checked' : '' }}>
-                <label class="form-check-label" for="aksesibilitas">7. Dukungan Aksebilitas</label>
-            </div>
-            @foreach ($kebutuhan as $item)
-                <div class="dynamic-field" data-checkbox-value="{{ $item }}">
-                    <label>{{ $item }}</label>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="uraian_bantuan[{{ $item }}]">Uraian Bantuan</label>
-                            <input type="text" class="form-control" name="uraian_bantuan[{{ $item }}]" value="{{ $anak->uraian_bantuan[$item] ?? '' }}" placeholder="Uraian Bantuan">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="nominal_bantuan[{{ $item }}]">Nominal Bantuan</label>
-                            <input type="text" class="form-control" name="nominal_bantuan[{{ $item }}]" value="{{ $anak->nominal_bantuan[$item] ?? '' }}" placeholder="Nominal Bantuan">
-                        </div>
+                    $uraian_bantuan = json_decode($anak->uraian_bantuan, true);
+                    $nominal_bantuan = json_decode($anak->nominal_bantuan, true);
+                @endphp
+
+
+                <div class="row mt-3" id="perawatanInputs" style="display: none;">
+                    <div class="col col-md-6 form-group">
+                        <label>Perawatan - Uraian</label>
+                        <input type="text" class="form-control" name="uraian_bantuan[Perawatan]" value="{{ $uraian_bantuan['Perawatan'] ?? '' }}" placeholder="Masukkan Uraian">
+                    </div>
+                    <div class="col col-md-6 form-group">
+                        <label>Perawatan - Nominal</label>
+                        <input type="number" class="form-control" name="nominal_bantuan[Perawatan]" value="{{ $nominal_bantuan['Perawatan'] ?? '' }}" placeholder="Masukkan Nominal">
                     </div>
                 </div>
-            @endforeach
+                <div class="row mt-3" id="dukungan_keluargaInputs" style="display: none;">
+                    <div class="col col-md-6 form-group">
+                        <label>Dukungan Keluarga - Uraian</label>
+                        <input type="text" class="form-control" name="uraian_bantuan[Dukungan Keluarga]" value="{{ $uraian_bantuan['Dukungan Keluarga'] ?? '' }}" placeholder="Masukkan Uraian">
+                    </div>
+                    <div class="col col-md-6 form-group">
+                        <label>Dukungan Keluarga - Nominal</label>
+                        <input type="number" class="form-control" name="nominal_bantuan[Dukungan Keluarga]" value="{{ $nominal_bantuan['Dukungan Keluarga'] ?? '' }}" placeholder="Masukkan Nominal">
+                    </div>
+                </div>
+                <div class="row mt-3" id="terapiInputs" style="display: none;">
+                    <div class="col col-md-6 form-group">
+                        <label>Terapi - Uraian</label>
+                        <input type="text" class="form-control" name="uraian_bantuan[Terapi]" value="{{ $uraian_bantuan['Terapi'] ?? '' }}" placeholder="Masukkan Uraian">
+                    </div>
+                    <div class="col col-md-6 form-group">
+                        <label>Terapi - Nominal</label>
+                        <input type="number" class="form-control" name="nominal_bantuan[Terapi]" value="{{ $nominal_bantuan['Terapi'] ?? '' }}" placeholder="Masukkan Nominal">
+                    </div>
+                </div>
+                <div class="row mt-3" id="pelatihanInputs" style="display: none;">
+                    <div class="col col-md-6 form-group">
+                        <label>Pelatihan Vokasional - Uraian</label>
+                        <input type="text" class="form-control" name="uraian_bantuan[Pelatihan Vokasional]" value="{{ $uraian_bantuan['Pelatihan Vokasional'] ?? '' }}" placeholder="Masukkan Uraian">
+                    </div>
+                    <div class="col col-md-6 form-group">
+                        <label>Pelatihan Vokasional - Nominal</label>
+                        <input type="number" class="form-control" name="nominal_bantuan[Pelatihan Vokasional]" value="{{ $nominal_bantuan['Pelatihan Vokasional'] ?? '' }}" placeholder="Masukkan Nominal">
+                    </div>
+                </div>
+                <div class="row mt-3" id="kewirausahaanInputs" style="display: none;">
+                    <div class="col col-md-6 form-group">
+                        <label>Kewirausahaan - Uraian</label>
+                        <input type="text" class="form-control" name="uraian_bantuan[Kewirausahaan]" value="{{ $uraian_bantuan['Kewirausahaan'] ?? '' }}" placeholder="Masukkan Uraian">
+                    </div>
+                    <div class="col col-md-6 form-group">
+                        <label>Kewirausahaan - Nominal</label>
+                        <input type="number" class="form-control" name="nominal_bantuan[Kewirausahaan]" value="{{ $nominal_bantuan['Kewirausahaan'] ?? '' }}" placeholder="Masukkan Nominal">
+                    </div>
+                </div>
+                <div class="row mt-3" id="aksesibilitasInputs" style="display: none;">
+                    <div class="col col-md-6 form-group">
+                        <label>Dukungan Aksebilitas - Uraian</label>
+                        <input type="text" class="form-control" name="uraian_bantuan[Aksesibilitas]" value="{{ $uraian_bantuan['Aksesibilitas'] ?? '' }}" placeholder="Masukkan Uraian">
+                    </div>
+                    <div class="col col-md-6 form-group">
+                        <label>Dukungan Aksebilitas - Nominal</label>
+                        <input type="number" class="form-control" name="nominal_bantuan[Aksesibilitas]" value="{{ $nominal_bantuan['Aksesibilitas'] ?? '' }}" placeholder="Masukkan Nominal">
+                    </div>
+                </div>
         </div>
     </div>
 </div>
@@ -242,6 +295,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 @endsection
+
 @section('js')
 <script src="{{ url('plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script>
@@ -251,76 +305,35 @@
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function() {
-    // Function to handle checkbox click
-    $('.form-check-input').change(function() {
-        var checkboxValue = $(this).val(); // Get the value of the clicked checkbox
-        var checkboxLabel = $(this).siblings('label').text(); // Get the label text associated with the clicked checkbox
-        
-        if ($(this).is(':checked')) {
-            // If checkbox is checked, dynamically add fields
-            var dynamicField = '<div class="dynamic-field">' +
-                                   '<label>' + checkboxLabel + '</label>' +
-                                   '<div class="form-row">' +
-                                       '<div class="form-group col-md-6">' +
-                                           '<label for="inputDescription">Uraian Bantuan</label>' +
-                                           '<input type="text" class="form-control" placeholder="Uraian Bantuan">' +
-                                       '</div>' +
-                                       '<div class="form-group col-md-6">' +
-                                           '<label for="inputAmount">Nominal Bantuan</label>' +
-                                           '<input type="text" class="form-control" placeholder="Nominal Bantuan">' +
-                                       '</div>' +
-                                   '</div>' +
-                               '</div>';
-            // Append the dynamically created fields to the appropriate container
-            $('#dynamicFields').append(dynamicField);
-        } else {
-            // If checkbox is unchecked, remove only the dynamically added fields associated with it
-            $(this).closest('.form-check').siblings('.dynamic-field').remove();
-        }
-    });
-});
-</script>
+    function toggleInputs(category) {
+        const checkbox = document.getElementById(category);
+        const inputs = document.getElementById(category + 'Inputs');
+        inputs.style.display = checkbox.checked ? 'block' : 'none';
+    }
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-<script>
+    // Initialize datepickers
     $(document).ready(function() {
-        // Initialize datepicker for birth date
         $('#birth_date').datepicker({
             format: 'yyyy-mm-dd',
             autoclose: true,
             todayHighlight: true
         });
-        
-        // Initialize datepicker for waktu pemberian bantuan
+
         $('#bantuan').datepicker({
             format: 'yyyy-mm-dd',
             autoclose: true,
             todayHighlight: true
         });
-    });
-</script>
-<script>
-    document.getElementById('anakForm').addEventListener('submit', function(event) {
-        let requiredFields = ['nama', 'nik', 'kk', 'birth_date', 'kelamin', 'agama', 'provinsi', 'kabupaten', 'kecamatan', 'kelurahan', 'rtrw', 'alamat', 'ktp', 'ppks', 'kategori', 'kasus'];
-        let valid = true;
-        let message = 'Harap isi semua kolom yang diperlukan: \n';
 
-        requiredFields.forEach(function(field) {
-            let input = document.getElementById(field);
-            if (!input.value) {
-                valid = false;
-                message += '- ' + input.getAttribute('name') + '\n';
+        // Initialize visibility of input fields based on checkbox state on page load
+        const categories = ['hidup_layak', 'perawatan', 'dukungan_keluarga', 'terapi', 'pelatihan', 'kewirausahaan', 'aksesibilitas'];
+        categories.forEach(function(category) {
+            const checkbox = document.getElementById(category);
+            const inputs = document.getElementById(category + 'Inputs');
+            if (checkbox.checked) {
+                inputs.style.display = 'block';
             }
         });
-
-        if (!valid) {
-            alert(message);
-            event.preventDefault();
-        }
     });
 </script>
 @endsection
- 

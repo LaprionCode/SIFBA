@@ -18,6 +18,7 @@ class AnakController extends Controller
         return view('anak/index', compact('anak'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -69,13 +70,34 @@ class AnakController extends Controller
             'kategori' => $request->kategori,
             'kasus' => $request->kasus,
             'kebutuhan' => json_encode($request->kebutuhan),
-            'hidup_layak' => $request->hidup_layak,
-            'perawatan' => $request->perawatan,
-            'dukungan_keluarga' => $request->dukungan_keluarga,
-            'terapi' => $request->terapi,
-            'pelatihan' => $request->pelatihan,
-            'kewirausahaan' => $request->kewirausahaan,
-            'aksesibilitas' => $request->aksesibilitas,
+            'hidup_layak' => json_encode([
+                'uraian' => $request->hidup_layak_uraian,
+                'nominal' => $request->hidup_layak_nominal
+            ]),
+            'perawatan' => json_encode([
+                'uraian' => $request->perawatan_uraian,
+                'nominal' => $request->perawatan_nominal
+            ]),
+            'dukungan_keluarga' => json_encode([
+                'uraian' => $request->dukungan_keluarga_uraian,
+                'nominal' => $request->dukungan_keluarga_nominal
+            ]),
+            'terapi' => json_encode([
+                'uraian' => $request->terapi_uraian,
+                'nominal' => $request->terapi_nominal
+            ]),
+            'pelatihan' => json_encode([
+                'uraian' => $request->pelatihan_uraian,
+                'nominal' => $request->pelatihan_nominal
+            ]),
+            'kewirausahaan' => json_encode([
+                'uraian' => $request->kewirausahaan_uraian,
+                'nominal' => $request->kewirausahaan_nominal
+            ]),
+            'aksesibilitas' => json_encode([
+                'uraian' => $request->aksesibilitas_uraian,
+                'nominal' => $request->aksesibilitas_nominal
+            ]),
             'foto' => $fotoPath,
             'bantuan' => $request->bantuan,
             'petugas' => $request->petugas,
