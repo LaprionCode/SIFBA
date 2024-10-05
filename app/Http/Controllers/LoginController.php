@@ -26,7 +26,7 @@ class LoginController extends Controller
         ];
 
         if (Auth::Attempt($data)) {
-            return redirect('anak');
+            return redirect('dashboard');
         }else{
             Session::flash('error', 'nip atau password salah');
             return redirect('/');

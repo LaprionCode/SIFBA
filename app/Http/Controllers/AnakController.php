@@ -15,10 +15,18 @@ class AnakController extends Controller
     public function index()
     {
         $anak = Anak::latest()->paginate(10);
-        return view('anak/index', compact('anak'));
+
+        // Calculate totals
+        $totals = [
+            'Anak' => Anak::where('kategori', 'Anak')->count(),
+            'Lansia' => Anak::where('kategori', 'Lansia')->count(),
+            'Disabilitas' => Anak::where('kategori', 'Disabilitas')->count(),
+            'Rentan' => Anak::where('kategori', 'Rentan')->count(),
+            'ODHA' => Anak::where('kategori', 'ODHA')->count(),
+        ];
+
+        return view('anak.index', compact('anak', 'totals'));
     }
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -26,6 +34,7 @@ class AnakController extends Controller
     {
         return view('anak/tambah');
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -113,9 +122,10 @@ class AnakController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Anak $anak)
+    public function show($id)
     {
-        //
+        $anak = Anak::findOrFail($id);
+        return view('anak.show', compact('anak'));
     }
 
     /**

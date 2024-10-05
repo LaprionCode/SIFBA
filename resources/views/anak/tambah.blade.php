@@ -1,5 +1,11 @@
 @extends('template/master')
 @section('content')
+<style>
+.btn-custom {
+    background-color: #4CAF50; /* Replace with your custom color */
+    color: white;
+}
+</style>
 <h1>Form Tambah Data PPKS</h1>
 <br>
 <div class="col">
@@ -134,6 +140,8 @@
              <option value="Disabilitas">Disabilitas</option>
              <option value="Lansia">Lansia</option>
              <option value="Korban Bencana">Korban Bencana</option>
+             <option value="Rentan">Rentan</option>
+             <option value="ODHA">ODHA</option>
             </select>
              </div> </div>
         <div class="form-group">
@@ -248,8 +256,10 @@
         </div>
     </div>
 
-</div></div>
-
+    
+        </div>  
+    </div>
+</div>
 <div class="col">
     <div class="card card-primary">
         <div class="card-header">
@@ -258,7 +268,7 @@
 
   <div class="col col-md-12 form-group">
       <label for="kelurahan">Waktu Pemberian Bantuan</label>
-      <input type="text" class="form-control" id="bantuan"  name="bantuan" placeholder="Waktu Pemberian Bantuan" required>
+      <input type="text" class="form-control" id="bantuan"  name="bantuan" placeholder="Waktu Pemberian Bantuan" >
 
   <div class="row">
         <div class="co col-md-12 form-group">
@@ -272,13 +282,15 @@
     <div class="row">
     <div class="col col-md-12 form-group">
       <label for="kelurahan">Nama Petugas Pemberi Bantuan</label>
-      <input type="text" class="form-control" id="petugas" name="petugas" placeholder="Nama Petugas" required>
+      <input type="text" class="form-control" id="petugas" name="petugas" placeholder="Nama Petugas" >
        </div> </div>
 </div></div>
 <!-- TOMBOL TAMBAH DATA!!!!!! -->
+</div> 
+</div>
 <div class= "card-footer">
-    <button type="submit" class="btn btn-primary">Tambah</button>
-</div> </div> </div>
+    <button type="submit" class="btn btn-custom btn-block col-12">Tambah</button>
+</div> 
 </form>
 
 
