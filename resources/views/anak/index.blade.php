@@ -5,148 +5,129 @@
 <link rel="stylesheet" href="{{ url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 <style>
-    .card-category {
+    .info-box-custom {
         display: flex;
         align-items: center;
-        padding: 20px;
+        padding: 15px;
         border-radius: 10px;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         min-height: 150px;
+        background-color: white; /* Set background color to white */
     }
-    .card-category img {
-        height: 70px;
-        margin-right: 15px;
+    .info-box-custom .info-box-icon {
+        flex: 0 0 80px; /* Increased the size for the icon container */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    .card-category .inner {
+    .info-box-custom img {
+        height: 80px; /* Adjusted the icon size */
+    }
+    .info-box-custom .info-box-content {
         flex: 1;
-        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding-left: 15px;
     }
-    .card-category .inner h3 {
-        margin: 0;
-        font-size: 2em;
-    }
-    .card-category .inner p {
+    .info-box-custom .info-box-text {
         margin: 0;
         font-size: 1.2em;
+        font-weight: bold;
+        color: black; /* Set text color to black */
+    }
+    .info-box-custom .info-box-number {
+        margin: 0;
+        font-size: 1.7em;
+        font-weight: bold;
+        color: black; /* Set number color to black */
+    }
+    @media (min-width: 1200px) {
+        .info-box-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .info-box-container .col {
+            flex: 1 0 20%;
+            max-width: 20%;
+            padding: 10px;
+        }
+    }
+    .dataTables_wrapper .dataTables_length, 
+    .dataTables_wrapper .dataTables_filter, 
+    .dataTables_wrapper .dataTables_info, 
+    .dataTables_wrapper .dataTables_paginate {
+        padding: 10px;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.3em 1em;
+    }
+    .table td, .table th {
+        text-align: center;
+        vertical-align: middle;
     }
 </style>
 @endsection
+
 @section('content')
 @if (session()->has('success'))
 <div class="alert alert-primary">
     {{ session()->get('success') }}
 </div>
 @endif
+
+<!-- DataTable -->
 <div class="row">
-    <!-- Anak -->
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-        <div class="card card-category bg-light">
-            <img src="{{ url('../../dist/img/anak.png') }}" alt="Anak">
-            <div class="inner">
-                <p>Anak</p>
-                <h3>110</h3>
-            </div>
-        </div>
-    </div>
-    <!-- Lansia -->
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-        <div class="card card-category bg-light">
-            <img src="{{ url('../../dist/img/anak.png') }}" alt="Lansia">
-            <div class="inner">
-                <p>Lansia</p>
-                <h3>30</h3>
-            </div>
-        </div>
-    </div>
-    <!-- Disabilitas -->
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-        <div class="card card-category bg-light">
-            <img src="{{ url('../../dist/img/anak.png') }}" alt="Disabilitas">
-            <div class="inner">
-                <p>Disabilitas</p>
-                <h3>15</h3>
-            </div>
-        </div>
-    </div>
-    <!-- Rentan -->
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-        <div class="card card-category bg-light">
-            <img src="{{ url('../../dist/img/anak.png') }}" alt="Rentan">
-            <div class="inner">
-                <p>Rentan</p>
-                <h3>4</h3>
-            </div>
-        </div>
-    </div>
-    <!-- ODHA -->
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-        <div class="card card-category bg-light">
-            <img src="{{ url('../../dist/img/anak.png') }}" alt="ODHA">
-            <div class="inner">
-                <p>ODHA</p>
-                <h3>4</h3>
-            </div>
-        </div>
-    </div>
-    <!-- Donut Chart -->
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-        <div class="card bg-light">
+    <div class="col-12">
+        <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Persentase Jumlah PPKS</h3>
+                <h3 class="card-title">DataTable PPKS</h3>
             </div>
             <div class="card-body">
-                <canvas id="donutChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>NIK</th>
+                            <th>Kabupaten/kota</th>
+                            <th>Kluster</th>
+                            <th>Petugas</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($anak as $data)
+                        <tr>
+                            <td>{{ $data->nama }}</td>
+                            <td>{{ $data->nik }}</td>
+                            <td>{{ $data->kabupaten }}</td>
+                            <td>{{ $data->kategori }}</td>
+                            <td>{{ $data->petugas }}</td>
+                            <td>
+                                <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('anak.destroy', $data->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
+                                    <a href="{{ route('anak.edit', $data->id) }}" class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
+                                    <a href="{{ route('anak.show', $data->id) }}" class="btn btn-outline-info"><i class="fa fa-eye"></i></a> <!-- View Button -->
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-        </div>
-    </div>
-</div>
-<div class="col-12">
-    <div class="card card-primary">
-        <div class="card-header">
-            <h3 class="card-title">DataTable PPKS</h3>
-        </div>
-        <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Nama</th>
-                        <th>NIK</th>
-                        <th>Kabupaten/kota</th>
-                        <th>Kluster</th>
-                        <th>Petugas</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($anak as $data)
-                    <tr>
-                        <td>{{ $data->nama}}</td>
-                        <td>{{ $data->nik}}</td>
-                        <td>{{ $data->kabupaten}}</td>
-                        <td>{{ $data->kategori}}</td>
-                        <td>{{ $data->petugas}}</td>
-                        <td>
-                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('anak.destroy', $data->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
-                                <a href="{{ route('anak.edit', $data->id) }}" class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
 @endsection
+
 @section('js')
 <!-- DataTables & Plugins -->
 <script src="{{ url('plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{ url('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="../../plugins/chart.js/Chart.min.js"></script>
 <script src="{{ url('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <script src="{{ url('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
 <script src="{{ url('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
@@ -163,42 +144,8 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["colvis"]
+            "buttons": ["colvis", "excelHtml5", "pdfHtml5"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    });
-
-    $(function () {
-        //-------------
-        //- DONUT CHART -
-        //-------------
-        // Get context with jQuery - using jQuery's .get() method.
-        var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
-        var donutData        = {
-            labels: [
-                'Anak',
-                'Lansia',
-                'Disabilitas',
-                'Rentan',
-                'ODHA',
-            ],
-            datasets: [
-                {
-                    data: [110, 30, 15, 4, 4],
-                    backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc'],
-                }
-            ]
-        }
-        var donutOptions     = {
-            maintainAspectRatio : false,
-            responsive : true,
-        }
-        //Create pie or douhnut chart
-        // You can switch between pie and douhnut using the method below.
-        new Chart(donutChartCanvas, {
-            type: 'doughnut',
-            data: donutData,
-            options: donutOptions
-        })
     });
 </script>
 @endsection

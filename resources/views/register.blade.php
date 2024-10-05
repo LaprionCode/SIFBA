@@ -1,127 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.ico') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/animate/animate.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css-hamburgers/hamburgers.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/select2/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
     <style>
-        .container {
+        .txt2 {
+            font-family: Poppins-Regular;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #666666;
+        }
+
+        .txt2:hover {
+            color: #57b846;
+            text-decoration: none;
+        }
+
+        .p-t-136 {
+            padding-top: 10px;
+        }
+
+        .container-login100 {
+            width: 100%;
+            min-height: 100vh;
             display: flex;
-            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            background: url('{{ asset('dist/img/bg.png') }}') no-repeat center center;
+            background-size: cover;
+        }
+
+        .wrap-login100 {
+            width: 960px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
             justify-content: space-between;
+            align-items: center;
+            padding: 50px 50px 50px 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .balok {
-            width: 150px;
-            height: 150px;
-            margin: 10px;
+        .login100-pic {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
 
-        .balok-biru {
-            background-color: #007bff;
+        .login100-pic img {
+            max-width: 100%;
+            max-height: 100%;
         }
 
-        .balok-hijau {
-            background-color: #28a745;
+        .login100-form {
+            width: 50%;
         }
 
-        .balok-kuning {
-            background-color: #ffc107;
+        .login100-form-title {
+            font-family: Poppins-Bold;
+            font-size: 24px;
+            color: #333333;
+            line-height: 1.2;
+            text-align: center;
+            width: 100%;
+            display: block;
+            padding-bottom: 54px;
         }
 
-        .form-control {
-            border-top: none;
-            border-left: none;
-            border-right: none;
-            border-bottom: 1px solid black;
-            transition: box-shadow 0.3s;
+        .wrap-input100 {
+            position: relative;
+            width: 100%;
+            z-index: 1;
+            margin-bottom: 10px;
         }
 
-        .form-control:focus {
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            outline: none;
-            border-top: none;
-            border-left: none;
-            border-right: none;
-            border-bottom: 1px solid black;
+        .input100 {
+            font-family: Poppins-Medium;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #666666;
+            display: block;
+            width: 100%;
+            background: #e6e6e6;
+            height: 50px;
+            border-radius: 25px;
+            padding: 0 30px 0 68px;
+        }
+
+        .focus-input100 {
+            display: block;
+            position: absolute;
+            border-radius: 25px;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0px 0px 0px 0px;
+            color: rgba(87, 184, 70, 0.8);
+        }
+
+        .input100:focus + .focus-input100 {
+            -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
+            animation: anim-shadow 0.5s ease-in-out forwards;
+        }
+
+        @-webkit-keyframes anim-shadow {
+            to {
+                box-shadow: 0px 0px 70px 25px;
+                opacity: 0;
+            }
+        }
+
+        @keyframes anim-shadow {
+            to {
+                box-shadow: 0px 0px 70px 25px;
+                opacity: 0;
+            }
+        }
+
+        .symbol-input100 {
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            border-radius: 25px;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding-left: 35px;
+            pointer-events: none;
+            color: #666666;
+            transition: all 0.4s;
+        }
+
+        .input100:focus + .focus-input100 + .symbol-input100 {
+            color: #57b846;
+            padding-left: 28px;
+        }
+
+        .container-login100-form-btn {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+        }
+
+        .login100-form-btn {
+            font-family: Montserrat-Bold;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #fff;
+            text-transform: uppercase;
+            width: 100%;
+            height: 50px;
+            border-radius: 25px;
+            background: #57b846;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 25px;
+            transition: all 0.4s;
+        }
+
+        .login100-form-btn:hover {
+            background: #333333;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .p-t-12 {
+            padding-top: 12px;
         }
     </style>
 </head>
-
 <body>
-    <div class="row">
-        <!-- SECARA VERTICAL BERADA DIATAS -->
-        <div class="col d-flex flex-row bd-highlight mb-3">
-            <div
-                style="width: 308px; height: 35px; top: 29px; left: 0px; position: absolute; background: #F9FD34; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)">
-            </div>
-            <div
-                style="width: 250px; height: 35px; left: 0px; top: 80px; position: absolute; background: #5389DA; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)">
-            </div>
-            <div
-                style="width: 197px; height: 35px; left: 0px; top: 131px; position: absolute; background: #86E03F; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)">
-            </div>
-        </div>
-
-        <!-- SECARA VERTICAL BERADA DI TENGAH -->
-        <div class="col container d-flex flex-column align-items-center">
-            <div class="col d-flex flex-column align-items-center">
-                <img style="width: 351px; height: 248px;" src="../../dist/img/kemensos.jpeg" alt="Kemensos Logo" />
-            @if(session('message'))
-            <div class="alert alert-success">
-                {{session('message')}}
-            </div>
-            @endif
-            <form action="{{route('actionregister')}}" method="post">
-            @csrf
-                <div class="row d-flex justify-content-center">
-                    <input type="text" class="form-control mb-3" id="Nama Lengkap" name="name" aria-describedby="namaHelp"
-                        placeholder="Nama Lengkap">
-                    <input type="text" class="form-control mb-3" id="NIP" name="nip" aria-describedby="nipHelp"
-                        placeholder="NIP">
-                    <input type="email" class="form-control mb-3" id="Email" name="email" aria-describedby="emailHelp"
-                        placeholder="Email">
-                    <input type="text" class="form-control mb-3" id="Nomor Telepon" name="nomor_telepon" aria-describedby="emailNomor"
-                        placeholder="Nomor Telepon">
-                    <input type="password" class="form-control mb-3" id="Password" name="password" aria-describedby="passwordHelp"
-                        placeholder="Password">
-                        <select class="form-control mb-3" id="inputRole" name="role" required>
-                            <option value="">Pilih Role</option>
-                            <option name="petugas">Petugas</option>
-                            <option name="keuangan">Keuangan</option>
-                        </select>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="{{ asset('dist/img/logoclean.png') }}" alt="IMG">
                 </div>
-
-
-                <p class="mt-4">Sudah punya akun? <a href="http://localhost:8000">Login</a></p>
-            </div>
-            <div class="col d-flex flex-column align-items-center mt-3">
-                <button class="btn btn-primary"
-                    style="width: 132px; height: 50px; background: #4B7CF8; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px;">
-                    Daftar
-                </button>
+                <form class="login100-form validate-form" method="POST" action="{{route('actionregister')}}">
+                    @csrf
+                    <span class="login100-form-title">Register</span>
+                    
+                    @if(Session::has('message'))
+                <div class="alert alert-success">
+                    {!! Session::get('message') !!}
+                </div>
+            @endif
+                    <div class="wrap-input100 validate-input" data-validate="Nama is required">
+                        <input class="input100" type="text" name="name" placeholder="Nama Lengkap" required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="NIP is required">
+                        <input class="input100" type="text" name="nip" placeholder="NIP"  required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-id-card" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" name="password" placeholder="Password" required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Role is required">
+                        <select class="input100" name="role" required>
+                            <option value="" disabled selected>Select Role</option>
+                            <option value="Petugas Asesmen">Petugas Asesmen</option>
+                            <option value="Staf Keuangan">Staf Keuangan</option>
+                        </select>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit">
+                            Register
+                        </button>
+                    </div>
+                    <div class="text-center p-t-12">
+                        <a class="txt2" href="{{ route('login') }}">
+                            Sudah Punya Akun? Login
+                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </form>
             </div>
         </div>
-
-        <!-- SECARA VERTICAL BERADA DI BAWAH -->
-        <div class="col d-flex flex-row-reverse bd-highlight mb-3">
-            <div
-                style="width: 308px; height: 35px; top: 756px; position: absolute; background: #F9FD34; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)">
-            </div>
-            <div
-                style="width: 197px; height: 35px; top: 658px; position: absolute; background: #86E03F; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)">
-            </div>
-            <div
-                style="width: 250px; height: 35px; top: 707px; position: absolute; background: #5389DA; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)">
-            </div>
-        </div>
-
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ asset('vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/popper.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('vendor/tilt/tilt.jquery.min.js') }}"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        });
+    </script>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
-
 </html>

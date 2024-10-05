@@ -19,14 +19,12 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $request->name,
             'nip' => $request->nip,
-            'email' => $request->email,
-            'nomor_telepon' => $request->nomor_telepon,
             'password' => Hash::make($request->password),
             'role' => $request->role,
             'active' => 1
         ]);
 
-        Session::flash('message', 'Register Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan NIP dan password.');
+        Session::flash('message', 'Register Berhasil. Akun Anda sudah Aktif <br>Silahkan Login menggunakan NIP dan password.');
         return redirect('register');
     }
 }
