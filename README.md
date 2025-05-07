@@ -78,6 +78,16 @@ Akses Aplikasi di Web browser
 127.0.0.1:8000
 ```
 
+![image](https://github.com/user-attachments/assets/61869c0d-a446-4be3-b362-4afa293ac534)
+
+![image](https://github.com/user-attachments/assets/2ba350a0-db89-4279-9d22-6e22ceb1c707)
+
+![image](https://github.com/user-attachments/assets/e7a9f6ea-3cff-4f27-add3-15f31b98add7)
+
+![image](https://github.com/user-attachments/assets/0e476281-36a3-4ce7-bc54-0e2b3ec04aa3)
+
+![image](https://github.com/user-attachments/assets/86163a25-bd50-455f-8995-be6079281ad4)
+
 
 
 ![Screenshot_941](https://github.com/dwipurnomo12/sistem-informasi-bkk-laravel/assets/105181667/a8b7291b-d5b4-4fd0-9ba9-9685bb17eedd)
