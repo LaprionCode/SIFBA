@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Sistem Informasi BKK (Bursa Kerja Khusus)
+# Sistem Informasi SIFBA (SISTEM INFORMASI ASESMEN BAGI PEMERLU PELAYANAN KESEJAHTERAANSOSIAL)
 
 
 Sistem informasi BKK (Bursa Kerja Khusus) adalah sebuah sistem informasi yang dibangun untuk membantu proses perekrutan dan penempatan tenaga kerja di Indonesia. BKK sendiri adalah sebuah lembaga yang memiliki tugas untuk membantu memfasilitasi penempatan tenaga kerja di perusahaan-perusahaan yang membutuhkan.
@@ -89,15 +89,3 @@ Akses Aplikasi di Web browser
 ![image](https://github.com/user-attachments/assets/86163a25-bd50-455f-8995-be6079281ad4)
 
 
-
-![Screenshot_941](https://github.com/dwipurnomo12/sistem-informasi-bkk-laravel/assets/105181667/a8b7291b-d5b4-4fd0-9ba9-9685bb17eedd)
-
-![Screenshot_942](https://github.com/dwipurnomo12/sistem-informasi-bkk-laravel/assets/105181667/a2483bac-50ed-43a8-8e11-e53161c8028e)
-
-![Screenshot_943](https://github.com/dwipurnomo12/sistem-informasi-bkk-laravel/assets/105181667/50afb82b-ff8b-4416-8020-65699d15b138)
-
-![Screenshot_944](https://github.com/dwipurnomo12/sistem-informasi-bkk-laravel/assets/105181667/92c87db1-ba09-4226-b5b7-5fe7b989e960)
-
-![Screenshot_945](https://github.com/dwipurnomo12/sistem-informasi-bkk-laravel/assets/105181667/81b06532-d109-44c4-bc29-91caa5dca1a5)
-
-![Screenshot_946](https://github.com/dwipurnomo12/sistem-informasi-bkk-laravel/assets/105181667/31211518-8494-4d75-93d5-3bc7bc241c5d)
